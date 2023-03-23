@@ -6,7 +6,7 @@ import {RecipeServices} from "../../../services/recipe.services";
   selector: 'app-recipe-details',
   templateUrl: './recipe-details.component.html',
   styleUrls: ['./recipe-details.component.css'],
-  providers : [RecipeServices]
+  // providers : [RecipeServices]
 })
 export class RecipeDetailsComponent implements OnInit {
 
@@ -20,6 +20,10 @@ export class RecipeDetailsComponent implements OnInit {
 
   ngOnInit(){
     console.log("recipe-details called");
+  }
+
+  onAddToShoppingList(){
+        this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
   }
 
 }
