@@ -3,12 +3,13 @@ import {Reciepe} from "../app/recipes/recipe.model";
 import {RecipesComponent} from "../app/recipes/recipes.component";
 import {Ingredient} from "../app/shared/ingredient.model";
 import {ShoppingListServices} from "./shopping-list.services";
+import {Subject} from "rxjs";
 
 
 @Injectable()
 export class RecipeServices{
 
-  recipeSelected = new EventEmitter<Reciepe>();
+  // recipeSelected = new Subject<Reciepe>();
 
   constructor(private slService : ShoppingListServices) {
   }
@@ -22,6 +23,10 @@ export class RecipeServices{
 
     getRecipes(){
       return this.recipes.slice();
+    }
+
+    getRecipe(id:number){
+      return this.recipes[id];
     }
 
     addIngredientsToShoppingList(ingredient : Ingredient[]){
