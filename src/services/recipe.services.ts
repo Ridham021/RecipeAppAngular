@@ -6,11 +6,12 @@ import {ShoppingListServices} from "./shopping-list.services";
 import {Subject} from "rxjs";
 
 
-@Injectable()
+@Injectable({providedIn:'root'})
 export class RecipeServices{
 
   // recipeSelected = new Subject<Reciepe>();
 
+  recipesChanged = new Subject<Reciepe[]>();
   constructor(private slService : ShoppingListServices) {
   }
   private recipes:Reciepe[] = [
@@ -31,6 +32,22 @@ export class RecipeServices{
 
     addIngredientsToShoppingList(ingredient : Ingredient[]){
          this.slService.addIngredients(ingredient);
+    }
+
+    addRecipe(recipe:Reciepe){
+      this.recipes.push(recipe);
+      this.recipesChanged.next(this.recipes.slice());
+    }
+
+    updateRecipe(index:number , newRecipe:Reciepe){
+      this.recipes[index] = newRecipe;
+      this.recipesChanged.next(this.recipes.slice());
+
+    }
+
+    deleteRecipe(index:number){
+      this.recipes.splice(index,1);
+      this.recipesChanged.next(this.recipes.slice());
     }
 
 
