@@ -14,17 +14,25 @@ export class RecipeServices{
   recipesChanged = new Subject<Reciepe[]>();
   constructor(private slService : ShoppingListServices) {
   }
-  private recipes:Reciepe[] = [
-    new Reciepe('A test Recipe','This is simply a test recipe','https://thumbs.dreamstime.com/b/pasta-arabbiata-25793698.jpg',
-      [new Ingredient("Meat",1) , new Ingredient("French Fries",4)]),
-    new Reciepe('Chocolate Cake','This is simply a test recipe','https://images.unsplash.com/photo-1626263468007-a9e0cf83f1ac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGNob2NvbGF0ZSUyMGNha2V8ZW58MHx8MHx8&w=1000&q=80',
-      [new Ingredient("Buns",2),new Ingredient("Meat",1)]),
+  // private recipes:Reciepe[] = [
+  //   new Reciepe('A test Recipe','This is simply a test recipe','https://thumbs.dreamstime.com/b/pasta-arabbiata-25793698.jpg',
+  //     [new Ingredient("Meat",1) , new Ingredient("French Fries",4)]),
+  //   new Reciepe('Chocolate Cake','This is simply a test recipe','https://images.unsplash.com/photo-1626263468007-a9e0cf83f1ac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGNob2NvbGF0ZSUyMGNha2V8ZW58MHx8MHx8&w=1000&q=80',
+  //     [new Ingredient("Buns",2),new Ingredient("Meat",1)]),
+  //
+  // ];
+  private recipes : Reciepe[] = [];
 
-  ];
+  setRecipes(recipes: Reciepe[]){
+    this.recipes = recipes;
+    this.recipesChanged.next(this.recipes.slice());
 
+  }
     getRecipes(){
       return this.recipes.slice();
     }
+
+
 
     getRecipe(id:number){
       return this.recipes[id];
