@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Ingredient} from "../shared/ingredient.model";
 import {ShoppingListServices} from "../../services/shopping-list.services";
 import {Subscription} from "rxjs";
+import {LoggingService} from "../logging.service";
 
 @Component({
   selector: 'app-shopping-list',
@@ -22,8 +23,9 @@ export class ShoppingListComponent implements OnInit,OnDestroy{
         this.ingredients = ingredients;
       }
     )
+    this.loggingService.printlog("This is from Shopping-list Component");
   }
-  constructor(private slService : ShoppingListServices) {
+  constructor(private slService : ShoppingListServices , private loggingService : LoggingService) {
   }
 
   ngOnDestroy(){
